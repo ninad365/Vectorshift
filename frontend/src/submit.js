@@ -1,9 +1,15 @@
 // submit.js
+import React, { useState } from 'react';
 import { useStore } from './store';
+import { Button } from '@fluentui/react-components';
+import { Dialog, DialogSurface, DialogBody, DialogTitle, DialogContent, DialogActions } from '@fluentui/react-components';
 
 export const SubmitButton = () => {
     const nodes = useStore((state) => state.nodes);
     const edges = useStore((state) => state.edges);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [dialogContent, setDialogContent] = useState('');
+
     const handleSubmit = async () => {
         const response = await fetch('http://localhost:8000/pipelines/parse', {
             method: 'POST',
@@ -11,18 +17,38 @@ export const SubmitButton = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                nodes: nodes.length,
-                edges: edges.length,
+                nodes: nodes,
+                edges: edges,
             }),
         });
 
         const result = await response.json();
         console.log(result);
+
+        // Prepare content to display in the dialog
+        const content = `Parsed ${result.nodes.length} nodes and ${result.edges.length} edges.`;
+        setDialogContent(content);
+
+        // Open the dialog
+        setIsDialogOpen(true);
     };
 
     return (
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <button type="submit" onClick={handleSubmit}>Submit</button>
+            <Button onClick={handleSubmit}>Submit</Button>
+            <Dialog open={isDialogOpen} onOpenChange={(event, data) => setIsDialogOpen(data.open)}>
+                <DialogSurface>
+                    <DialogBody>
+                        <DialogTitle>Pipeline Parse Result</DialogTitle>
+                        <DialogContent>
+                            <p>{dialogContent}</p>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button appearance="primary" onClick={() => setIsDialogOpen(false)}>Close</Button>
+                        </DialogActions>
+                    </DialogBody>
+                </DialogSurface>
+            </Dialog>
         </div>
     );
 }
