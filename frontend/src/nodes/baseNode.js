@@ -20,7 +20,7 @@ export const BaseNode = ({ id, title, content, inputHandles, outputHandle }) => 
                         type="target"
                         position={handle.position}
                         id={handle.id}
-                        style={{ top }} // Apply top as part of the style object
+                        style={{ top }}
                     />
                 );
             })}

@@ -11,6 +11,7 @@ import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
 import { TextNode } from './nodes/textNode';
 import { CustomNode } from './nodes/customNode';
+import { DecisionNode } from './nodes/decisionNode';
 
 import 'reactflow/dist/style.css';
 
@@ -22,6 +23,7 @@ const nodeTypes = {
   customOutput: OutputNode,
   text: TextNode,
   custom: CustomNode,
+  decision: DecisionNode,
 };
 
 const selector = (state) => ({

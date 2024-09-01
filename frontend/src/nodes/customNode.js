@@ -1,14 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BaseNode } from './baseNode';
 import { Position } from 'reactflow';
 
 export const CustomNode = ({ id, data }) => {
-    const [customField, setCustomField] = useState(data?.customField || '');
-
-    const fields = [
-        { name: 'customField', label: 'Custom Field', value: customField, onChange: (e) => setCustomField(e.target.value), type: 'input' },
-    ];
-
     const inputHandles = [
         {
             id: `${id}-output`,
@@ -26,6 +20,6 @@ export const CustomNode = ({ id, data }) => {
     ];
 
     return (
-        <BaseNode id={id} data={data} title="Custom Node" fields={fields} inputHandles={inputHandles} outputHandle={outputHandle} />
+        <BaseNode id={id} data={data} title="Custom Node" inputHandles={inputHandles} outputHandle={outputHandle} />
     );
 };

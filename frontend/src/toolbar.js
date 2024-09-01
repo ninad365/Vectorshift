@@ -45,6 +45,7 @@ export const PipelineToolbar = () => {
         <DraggableNode type='customOutput' label='Output' className={classes.nodeButton} />
         <DraggableNode type='text' label='Text' className={classes.nodeButton} />
         <DraggableNode type='custom' label='Custom' className={classes.nodeButton} />
+        <DraggableNode type='decision' label='Decision' className={classes.nodeButton} />
       </div>
     </div>
   );

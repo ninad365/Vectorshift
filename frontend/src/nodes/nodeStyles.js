@@ -8,11 +8,17 @@ export const useNodeStyles = makeStyles({
     backgroundColor: '#f3f2f1',
     borderRadius: '4px',
     marginBottom: '10px',
+    minWidth: '300px',
   },
   header: {
     marginBottom: '10px',
     fontWeight: 'bold',
-    fontSize: '14px',
+    fontSize: '16px', // Increase font size for better prominence
+    fontFamily: 'Arial, sans-serif', // Set a clear, readable font
+    color: '#33A', // Darker color for better readability
+    textAlign: 'center', // Center-align text for a more balanced look
+    textTransform: 'uppercase', // Make the title uppercase for emphasis
+    letterSpacing: '1px',
   },
   field: {
     display: 'flex',
