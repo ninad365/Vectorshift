@@ -23,7 +23,6 @@ export const SubmitButton = () => {
         });
 
         const result = await response.json();
-        console.log(result);
 
         // Prepare content to display in the dialog
         let content = `Parsed ${result.num_nodes} nodes and ${result.num_edges} edges.`;
