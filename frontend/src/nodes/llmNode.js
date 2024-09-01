@@ -1,28 +1,51 @@
 // llmNode.js
 
 import { Handle, Position } from 'reactflow';
+import { makeStyles, shorthands, Text } from '@fluentui/react-components';
+
+const useStyles = makeStyles({
+  container: {
+    width: '200px',
+    height: '80px',
+    ...shorthands.border('1px', 'solid', '#ccc'),
+    ...shorthands.padding('10px'),
+    backgroundColor: '#f3f2f1',
+    borderRadius: '4px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: '14px',
+  },
+  content: {
+    fontSize: '12px',
+  },
+});
 
 export const LLMNode = ({ id, data }) => {
+  const classes = useStyles();
 
   return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
+    <div className={classes.container}>
       <Handle
         type="target"
         position={Position.Left}
         id={`${id}-system`}
-        style={{top: `${100/3}%`}}
+        style={{top: `${100 / 3}%`}}
       />
       <Handle
         type="target"
         position={Position.Left}
         id={`${id}-prompt`}
-        style={{top: `${200/3}%`}}
+        style={{top: `${200 / 3}%`}}
       />
-      <div>
-        <span>LLM</span>
+      <div className={classes.header}>
+        <Text>LLM</Text>
       </div>
-      <div>
-        <span>This is a LLM.</span>
+      <div className={classes.content}>
+        <Text>This is a LLM.</Text>
       </div>
       <Handle
         type="source"
@@ -31,4 +54,4 @@ export const LLMNode = ({ id, data }) => {
       />
     </div>
   );
-}
+};
