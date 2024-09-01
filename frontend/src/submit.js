@@ -26,7 +26,13 @@ export const SubmitButton = () => {
         console.log(result);
 
         // Prepare content to display in the dialog
-        const content = `Parsed ${result.nodes.length} nodes and ${result.edges.length} edges.`;
+        let content = `Parsed ${result.num_nodes} nodes and ${result.num_edges} edges.`;
+        if (result.is_dag){
+            content += " Pipeline forms a valid DAG.";
+        } else {
+            content += " Pipeline does not form a DAG (contains cycles).";
+        }
+
         setDialogContent(content);
 
         // Open the dialog

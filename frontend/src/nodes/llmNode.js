@@ -1,31 +1,11 @@
 // llmNode.js
 
 import { Handle, Position } from 'reactflow';
-import { makeStyles, shorthands, Text } from '@fluentui/react-components';
-
-const useStyles = makeStyles({
-  container: {
-    width: '200px',
-    height: '80px',
-    ...shorthands.border('1px', 'solid', '#ccc'),
-    ...shorthands.padding('10px'),
-    backgroundColor: '#f3f2f1',
-    borderRadius: '4px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-  header: {
-    fontWeight: 'bold',
-    fontSize: '14px',
-  },
-  content: {
-    fontSize: '12px',
-  },
-});
+import { Text } from '@fluentui/react-components';
+import { useNodeStyles } from './nodeStyles';
 
 export const LLMNode = ({ id, data }) => {
-  const classes = useStyles();
+  const classes = useNodeStyles();
 
   return (
     <div className={classes.container}>

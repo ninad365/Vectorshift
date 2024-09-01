@@ -2,28 +2,11 @@
 
 import { useState } from 'react';
 import { Handle, Position } from 'reactflow';
-import { Input, Dropdown, Option, Label, makeStyles, shorthands } from '@fluentui/react-components';
-
-const useStyles = makeStyles({
-  container: {
-    height: 'auto',
-    ...shorthands.border('1px', 'solid', '#ccc'),
-    ...shorthands.padding('10px'),
-    backgroundColor: '#f3f2f1',
-    borderRadius: '4px',
-  },
-  header: {
-    marginBottom: '10px',
-    fontWeight: 'bold',
-    fontSize: '14px',
-  },
-  field: {
-    marginBottom: '10px',
-  },
-});
+import { Input, Dropdown, Option, Label } from '@fluentui/react-components';
+import { useNodeStyles } from './nodeStyles';
 
 export const OutputNode = ({ id, data }) => {
-  const classes = useStyles();
+  const classes = useNodeStyles();
   const [currName, setCurrName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
   const [outputType, setOutputType] = useState(data.outputType || 'Text');
 

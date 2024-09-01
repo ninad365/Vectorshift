@@ -30,12 +30,9 @@ async def parse_pipeline(request: Request):
     logging.info(f'Nodes: {nodes}')
     logging.info(f'Edges: {edges}')
 
-    if is_dag(nodes, edges):
-        status = 'Pipeline forms a valid DAG.'
-    else:
-        status = 'Pipeline does not form a DAG (contains cycles).'
+    is_pipeline_dag = is_dag(nodes, edges)
 
-    return {'status': status, 'nodes': nodes, 'edges': edges}
+    return {'is_dag': is_pipeline_dag, 'num_nodes': len(nodes), 'num_edges': len(edges)}
 
 def is_dag(nodes, edges):
     graph = defaultdict(list)
