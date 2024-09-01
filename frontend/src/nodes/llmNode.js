@@ -1,37 +1,39 @@
 // llmNode.js
 
-import { Handle, Position } from 'reactflow';
+import React from 'react';
+import { BaseNode } from './baseNode';
 import { Text } from '@fluentui/react-components';
-import { useNodeStyles } from './nodeStyles';
+import { Position } from 'reactflow';
 
-export const LLMNode = ({ id, data }) => {
-  const classes = useNodeStyles();
+export const LLMNode = ({ id }) => {
+  const content = (
+    <div>
+      <Text>This is a LLM.</Text>
+    </div>
+  );
 
   return (
-    <div className={classes.container}>
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-system`}
-        style={{top: `${100 / 3}%`}}
-      />
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-prompt`}
-        style={{top: `${200 / 3}%`}}
-      />
-      <div className={classes.header}>
-        <Text>LLM</Text>
-      </div>
-      <div className={classes.content}>
-        <Text>This is a LLM.</Text>
-      </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-response`}
-      />
-    </div>
+    <BaseNode
+      id={id}
+      title="LLM"
+      content={content}
+      inputHandles={[
+        {
+          id: `${id}-system`,
+          position: Position.Left,
+          type: 'target'
+        },
+        {
+          id: `${id}-prompt`,
+          position: Position.Left,
+          type: 'target'
+        },
+      ]}
+      outputHandle={{
+        id: `${id}-response`,
+        position: Position.Right,
+        type: 'source'
+      }}
+    />
   );
 };
